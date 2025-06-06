@@ -6,7 +6,7 @@ import "../components/ProdutoLista.css"
 export function ProdutoLista() {
     // Hook da biblioteca React Query que busca dados assíncronos e faz o cache automaticamente.
     // Aqui, estamos buscando uma lista de produtos (Produto[]) do backend.
-    const { data, isLoading, isError } = useQuery<Produto[]>({
+    const {data, isLoading, isError} = useQuery<Produto[]>({
         // Define a chave da query, que é usada para identificar e armazenar os dados no cache.
         queryKey: ['produtos'],
         // Função que será executada para buscar os dados.
@@ -19,7 +19,7 @@ export function ProdutoLista() {
     })
 
     if (isLoading) {
-    return <p>Loading...</p>
+        return <p>Loading...</p>
     }
     if (isError) {
         return <p>Erro ao carregar os produtos</p>
@@ -28,7 +28,7 @@ export function ProdutoLista() {
         <div>
             <h1 className={"titulo1"}>Produtos</h1>
 
-            {data?.map((produto) => (
+            {data?.map((produto) => ( //para cada produto gera 1 card desses
                 <div key={produto.id}>
                     <h2>{produto.nome}</h2>
                     <img src={produto.imagem} alt={produto.nome} style={{width: '300px'}}/>
